@@ -1,3 +1,39 @@
-h1 {
+.container {
+  padding: 0 20px;
+}
+
+.form-body {
+  .form-control {
+    display: block;
+    width: 20%;
+  }
+
+  .submit-button {
+    margin: 20px 0;
+  }
+}
+
+.notes-container {
+  .note-card {
+    width: 50%;
+    margin: 25px 0;
+
+    img {
+      display: block;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+
+h1{
+  color: cornflowerblue;
+}
+
+h2 {
   color: gray;
+}
+.name {
+  text-align: right;
+  text-transform: capitalize;
 }

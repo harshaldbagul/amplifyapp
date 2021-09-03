@@ -1,4 +1,77 @@
 <amplify-authenticator>
-  <div>Hello, {{ user?.username }}!</div>
+  <div class="container">
+    <h3 class="name">Hello, {{ user?.username }}!</h3>
+
+    <h1>My Notes App</h1>
+
+    <h2>Add Notes</h2>
+    <div class="form-body">
+      <form [formGroup]="formData" (ngSubmit)="createNote()">
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Note Name</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            placeholder="Write Note name"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-control">
+          <mat-label>Note Description </mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="description"
+            placeholder="Write Note description"
+          />
+        </mat-form-field>
+
+        <div class="form-control">
+          <button type="button" mat-raised-button (click)="fileInput.click()">
+            Upload Pic
+          </button>
+          <input
+            hidden
+            (change)="uploadImage($event)"
+            #fileInput
+            type="file"
+            id="file"
+          />
+        </div>
+
+        <button
+          class="submit-button"
+          mat-stroked-button
+          color="primary"
+          [disabled]="formData.invalid"
+        >
+          Create Note
+        </button>
+      </form>
+    </div>
+
+    <hr />
+
+    <h2>Notes :</h2>
+    <div class="notes-container">
+      <mat-card *ngFor="let note of notes" class="note-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{ note.name }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          {{ note.description }}
+        </mat-card-content>
+        <img *ngIf="note.image" [src]="note.image" mat-card-image />
+        <mat-card-actions>
+          <button mat-stroked-button color="warn" (click)="deleteNote(note)">
+            Delete note
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
   <amplify-sign-out></amplify-sign-out>
 </amplify-authenticator>
